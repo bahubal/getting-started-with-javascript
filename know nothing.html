@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <title>page</title>
+  <style>
+      .floating-box {
+      float: left;
+      background: #eee;
+      text-align: right;
+      width: 250px;
+      height: 150px;
+      margin: 20px;
+      border: 3px solid grey;
+    }
+
+    .header{
+      color:white;
+      background-color: grey;
+      padding:5px 3px 5px 3px;
+      border-style:solid;
+    }
+
+    .ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+    
+    .li{
+    display:inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    }
+    #main-box{
+      float:left;
+      width:70%;
+      margin: 20px;
+    }
+    .side{
+      float:right;
+      border:3px solid grey;
+      width: 20%;
+      height: 500px;
+      margin: 20px;
+      text-align:center;
+      background-color: lightblue; 
+
+    }
+
+
+    .floating-box:nth-child(odd) {
+      background: white;
+    }
+
+      .del>div {
+      text-align: center;
+      border: 3px solid grey;
+    }
+  </style>
+</head>
+
+<body style="background: lightpink">
+  <div class="header">
+   <header>
+     <h1>Project javascript </h1>
+        <ul class="ul">
+          <li class="li"><a href="#home">Home</a></li>
+          <li class="li"><a href="#form">Newsletter</a></li>
+          <li class="li"><a href="#contact">Contact</a></li>
+          <li class="li"><a href="#about">About</a></li>
+        </ul>
+   </header>
+ </div>
+   <div class="side">
+    <h3>Hang On</h3>
+      <ul class="ul">
+        <li>abc</li>
+        <li>xyz</li>
+        <li>xyz</li>
+      </ul><br>
+      <ul class="ul">
+        <li>abc</li>
+        <li>xyz</li>
+        <li>xyz</li>
+      </ul>
+   </div>
+   <div id="main-box">  
+      <div id="container">
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+        <p id=box class="floating-box">box
+          <button class="del">X</button>
+        </p>
+      </div>
+   </div> 
+<script>
+  var contain = document.getElementById('container');
+  var boxes = document.getElementsByClassName('floating-box');
+//box scroll event
+
+for(var i=0, l=boxes.length; i<l; i++){
+ boxes[i].addEventListener('click', rmbox);
+}
+
+document.addEventListener('scroll', addbox);
+
+function addbox(e) {
+  e.preventDefault();
+
+  var p = document.createElement('p');
+  p.className = 'floating-box';
+  p.appendChild(document.createTextNode('box'));
+  var deletebtn = document.createElement('button');
+  deletebtn.className = 'del';
+  deletebtn.appendChild(document.createTextNode('X'));
+  deletebtn.addEventListener('click', rmbox);
+  p.appendChild(deletebtn);
+  contain.appendChild(p);
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+    contain.appendChild(p);
+  }
+
+}
+
+function rmbox(e) {
+  if (e.target.classList.contains('del')) {
+    if (confirm('Are you sure?')) {
+      var p = e.target.parentElement;
+      p.parentElement.removeChild(p);
+    }
+  }
+}
+</script>
+</body>
+
+</html>
